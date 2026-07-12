@@ -14,7 +14,7 @@ GitHub Pages 首页刻意只保留标题、4 个 KPI、流程与入口；本 REA
 | SQL 与数仓建模 | `RAW → ODS → DWD → DWS → ADS` 分层 SparkSQL；订单与行为事实分离 |
 | 数据质量 | 六表 Schema、主外键、金额公式、生命周期、层间行数与 ADS 指标对账 |
 | DataOps | run manifest、输入 SHA-256、quarantine、失败退出、不可变 release 与原子切换 |
-| BI 交付 | 8 张小型 ADS CSV 同时服务 Streamlit 与静态作品页 |
+| BI 交付 | Streamlit 展示业务指标、运行健康、质量门禁与长期运营模型；8 张小型 ADS CSV 同时服务 Dashboard 与静态作品页 |
 | 工程化 | 固定种子 fixture、pytest、统一 `make` 命令和可分享 ZIP |
 
 技术栈：Java 17、PySpark 4.0.3、SparkSQL、本地 Hive Metastore、Parquet、Python、pytest、Streamlit、Tableau-ready CSV。

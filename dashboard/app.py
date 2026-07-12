@@ -1,4 +1,4 @@
-"""Recruiter-facing dashboard for the six-table e-commerce DataOps project."""
+"""Recruiter-facing Streamlit dashboard for the SQL/DataOps portfolio."""
 
 from __future__ import annotations
 
@@ -21,8 +21,8 @@ GREEN = "#18794E"
 RED = "#B42318"
 
 st.set_page_config(
-    page_title="E-commerce SQL + DataOps",
-    page_icon="📦",
+    page_title="SQL DataOps Operations",
+    page_icon="D",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -69,6 +69,43 @@ def _rate(value: Any) -> str:
         return "—"
 
 
+def _duration(value: Any) -> str:
+    try:
+        seconds = float(value)
+    except (TypeError, ValueError):
+        return "—"
+    if seconds >= 60:
+        return f"{seconds / 60:.1f} min"
+    return f"{seconds:.1f}s"
+
+
+def _quality_counts(bundle: DashboardData, quality: pd.DataFrame) -> tuple[int, int, int, int]:
+    manifest_quality = bundle.manifest.get("quality", {})
+    if isinstance(manifest_quality, dict):
+        total = int(manifest_quality.get("total_checks", 0) or 0)
+        passed = int(manifest_quality.get("passed_checks", 0) or 0)
+        warnings = int(manifest_quality.get("warning_checks", 0) or 0)
+        failed = int(manifest_quality.get("failed_checks", 0) or 0)
+        if total:
+            return total, passed, warnings, failed
+    if quality.empty or "check_status" not in quality.columns:
+        return 0, 0, 0, 0
+    statuses = quality["check_status"].astype(str).str.lower()
+    passed = int((statuses == "pass").sum())
+    warnings = int((statuses == "warn").sum())
+    failed = int((statuses == "fail").sum())
+    return len(quality), passed, warnings, failed
+
+
+def _date_window(bundle: DashboardData) -> str:
+    profile = bundle.manifest.get("data_profile", {})
+    if not isinstance(profile, dict):
+        return "—"
+    start = profile.get("min_event_date")
+    end = profile.get("max_event_date")
+    return f"{start} → {end}" if start and end else "—"
+
+
 def _header(bundle: DashboardData, kpis: pd.DataFrame) -> None:
     mode = str(bundle.manifest.get("data_mode") or _first(kpis, "data_mode", "UNKNOWN")).upper()
     source = str(bundle.manifest.get("source_status") or _first(kpis, "source_status", "UNKNOWN")).upper()
@@ -87,14 +124,50 @@ def _header(bundle: DashboardData, kpis: pd.DataFrame) -> None:
         unsafe_allow_html=True,
     )
     st.markdown(f'<span class="source-badge">{mode} DATA · SOURCE {source}</span>', unsafe_allow_html=True)
-    st.title("E-commerce Operations")
+    st.title("SQL DataOps Operations")
     st.markdown(
-        '<p class="compact-note">Six source tables → governed SQL warehouse → aggregate BI outputs.</p>',
+        '<p class="compact-note">Published snapshot, quality gate, business aggregates, and run evidence.</p>',
         unsafe_allow_html=True,
     )
 
 
+def _run_health(bundle: DashboardData, quality: pd.DataFrame) -> None:
+    st.subheader("Run health")
+    profile = bundle.manifest.get("data_profile", {})
+    if not isinstance(profile, dict):
+        profile = {}
+    manifest_quality = bundle.manifest.get("quality", {})
+    if not isinstance(manifest_quality, dict):
+        manifest_quality = {}
+    total, passed, warnings, failed = _quality_counts(bundle, quality)
+    published = "yes" if bundle.manifest.get("published") is True else "no"
+    quality_status = str(manifest_quality.get("status", "unknown")).upper()
+    columns = st.columns(6)
+    values = (
+        ("Published", published),
+        ("Quality gate", quality_status),
+        ("Checks", f"{passed}/{total} pass"),
+        ("Warnings", str(warnings)),
+        ("Quarantined rows", _count(profile.get("quarantine_rows"))),
+        ("Runtime", _duration(bundle.manifest.get("duration_seconds"))),
+    )
+    for column, (label, value) in zip(columns, values):
+        column.metric(label, value)
+    st.caption(
+        f"Run `{bundle.manifest.get('run_id', 'unknown')}` · "
+        f"Spark {bundle.manifest.get('spark_version', 'unknown')} · "
+        f"Data window {_date_window(bundle)}"
+    )
+    if failed:
+        st.error("This run has failed checks. The current published dashboard should not be replaced.")
+    elif warnings:
+        st.warning("Warnings are visible and audited; blocking checks passed, so the published ADS snapshot is usable.")
+    else:
+        st.success("All checks passed for the published ADS snapshot.")
+
+
 def _kpis(kpis: pd.DataFrame) -> None:
+    st.subheader("Business snapshot")
     columns = st.columns(6)
     values = (
         ("Valid orders", "total_orders", _count),
@@ -208,6 +281,51 @@ def _quality(bundle: DashboardData, quality: pd.DataFrame) -> None:
         )
 
 
+def _operating_model() -> None:
+    st.subheader("Long-running DataOps model")
+    st.markdown(
+        "The current portfolio publishes a validated batch snapshot. "
+        "For daily operation, the same contract extends to partitioned incremental drops, "
+        "watermark tracking, quality-gated publishing, and rollback-safe BI releases."
+    )
+    st.table(
+        pd.DataFrame(
+            [
+                {
+                    "Layer": "Ingest",
+                    "Long-running behavior": "Land new files by run date, keep immutable raw history.",
+                    "Why it matters": "Replays and source audits stay possible.",
+                },
+                {
+                    "Layer": "Build",
+                    "Long-running behavior": "Process only new or backfilled partitions, then reconcile to historical facts.",
+                    "Why it matters": "Daily runs stay fast without losing correctness.",
+                },
+                {
+                    "Layer": "Quality gate",
+                    "Long-running behavior": "Block schema, enum, null-ID, timestamp, reconciliation, and ADS-output failures.",
+                    "Why it matters": "Bad batches cannot replace the last good dashboard.",
+                },
+                {
+                    "Layer": "Publish",
+                    "Long-running behavior": "Write candidate outputs first, then atomically publish current only after checks pass.",
+                    "Why it matters": "Consumers always see a complete version.",
+                },
+                {
+                    "Layer": "Operate",
+                    "Long-running behavior": "Keep manifest history with run ID, row counts, warnings, SQL version, and runtime.",
+                    "Why it matters": "Incidents can be explained and reproduced.",
+                },
+            ]
+        )
+    )
+    st.code(
+        "make incremental DATA_DIR=/daily/drop RUN_DATE=2026-07-12\n"
+        "# future production extension: partitioned build + same quality gate + atomic publish",
+        language="bash",
+    )
+
+
 def main() -> None:
     bundle = _load_cached(None, publication_fingerprint())
     if bundle.errors:
@@ -220,6 +338,7 @@ def main() -> None:
 
     kpis = bundle.table("kpis")
     _header(bundle, kpis)
+    _run_health(bundle, bundle.table("quality"))
     _kpis(kpis)
     st.divider()
     left, right = st.columns(2)
@@ -235,6 +354,8 @@ def main() -> None:
     _segment_chart(bundle.table("segments"))
     st.divider()
     _quality(bundle, bundle.table("quality"))
+    st.divider()
+    _operating_model()
     st.caption("Source unverified · Currency unverified · Aggregate outputs only")
 
 
