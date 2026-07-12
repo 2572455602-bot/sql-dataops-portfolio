@@ -1,0 +1,536 @@
+{
+  "run_id": "20260712T061538Z-portfolio-bc5ad379",
+  "project": "ecommerce_six_table_dataops",
+  "data_mode": "PORTFOLIO",
+  "source_status": "UNVERIFIED",
+  "dataset_profile": "ecommerce_six_table_v1",
+  "status": "success",
+  "started_at": "2026-07-12T06:15:38.898824+00:00",
+  "published": true,
+  "input": {
+    "directory_name": "dataset",
+    "size_bytes": 5178964,
+    "combined_sha256": "44bb20733d38f336e3b11328d4e5040590fcc610e975203189db4975fcf1aa74",
+    "row_count": 59000,
+    "preflight_sampled_rows": 12000,
+    "files": {
+      "orders.csv": {
+        "size_bytes": 2210182,
+        "sha256": "dedc7aa7c254cb42a283440e422b2a284623abd1174a8b6d3a0fda66460817e2",
+        "row_count": 15000,
+        "sampled_rows": 2000
+      },
+      "product_features.csv": {
+        "size_bytes": 96533,
+        "sha256": "e66817cbd94cf56236bab12d8489e5751f15265ea1904a0e37905b8869b37a31",
+        "row_count": 2000,
+        "sampled_rows": 2000
+      },
+      "products.csv": {
+        "size_bytes": 147681,
+        "sha256": "d2f139f79bf76ed2cfd0576ce5e2ca3d1fead2507b0d32963b829371e90bc554",
+        "row_count": 2000,
+        "sampled_rows": 2000
+      },
+      "user_behaviors.csv": {
+        "size_bytes": 1931518,
+        "sha256": "9d1389854254b649a71d6fa5fd0bc8eab027d1f5fc2530cf332561d42aab8d0c",
+        "row_count": 30000,
+        "sampled_rows": 2000
+      },
+      "user_features.csv": {
+        "size_bytes": 383872,
+        "sha256": "54ba43e72b944cd03d5479edf1cd773914c58d04d77951e365c912cc9f61e2e5",
+        "row_count": 5000,
+        "sampled_rows": 2000
+      },
+      "users.csv": {
+        "size_bytes": 409178,
+        "sha256": "3bd1fefe2bf47d22b958d8fcabb8ac7c9be186e921b7e309ea479b0ebad60dab",
+        "row_count": 5000,
+        "sampled_rows": 2000
+      }
+    },
+    "raw_files_committed": false
+  },
+  "sql": {
+    "bundle_sha256": "d235bbf01a4c3a593e1e93413b9078a9c61023240c199a5b14addcab5fed3c6a",
+    "files": [
+      "sql/00_raw.sql",
+      "sql/10_ods.sql",
+      "sql/20_dwd.sql",
+      "sql/30_dws_activity.sql",
+      "sql/31_dws_users.sql",
+      "sql/32_dws_categories.sql",
+      "sql/40_ads.sql",
+      "sql/90_quality.sql"
+    ],
+    "executed_statements": [
+      {
+        "file": "sql/00_raw.sql",
+        "statement_number": 1,
+        "statement_sha256": "e946821b2c0fbdf1ac1db9ac2d453f1c8a33e9085bc608ed1d160e868aea5034"
+      },
+      {
+        "file": "sql/00_raw.sql",
+        "statement_number": 2,
+        "statement_sha256": "5246dcd332bab28955be28f6103a387d17fb2f38e467d1d7ff7cd2e312c6ae33"
+      },
+      {
+        "file": "sql/00_raw.sql",
+        "statement_number": 3,
+        "statement_sha256": "38e715170335c12aa81ae988f3f510aa29dccf2494a91d4b47aa5d2e19beaa17"
+      },
+      {
+        "file": "sql/00_raw.sql",
+        "statement_number": 4,
+        "statement_sha256": "750d6b16695938b2f94fcbd89ff2cf0ad014d1ebef0c4f9d9a1542b9503cc62f"
+      },
+      {
+        "file": "sql/00_raw.sql",
+        "statement_number": 5,
+        "statement_sha256": "211b996942e03d2392d9b48825b1160f5d05173cdc8d9ccca0c13bd7310ca664"
+      },
+      {
+        "file": "sql/00_raw.sql",
+        "statement_number": 6,
+        "statement_sha256": "9de867259506d481ba34fcc82acc6ba9a7c564dbd7967aee137c7cd686bb5644"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 1,
+        "statement_sha256": "b1b8e61c7418f9332278e29273216c245997d694e1322911a38aca22c5ea493c"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 2,
+        "statement_sha256": "aaabc4a5a6b317abb14746059ac7150e6559928efd2b498f7fb874cec6df88f2"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 3,
+        "statement_sha256": "0eed47218a0355f389b907b656eca7393238d1606d089f5e84dd87102c5e4b26"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 4,
+        "statement_sha256": "10ea12a235e66f9ae25c0b152ee2fa0318a1190b89149c8da7a90baeca131ed6"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 5,
+        "statement_sha256": "b6fbf905e48b1e260d98dbd8481d0c8cc66a57717f6f174da78cd4fb97aada3b"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 6,
+        "statement_sha256": "005c07df3df1118f9b0c4902d47a971ef9eb8e8c95b076c943315c85e0715645"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 7,
+        "statement_sha256": "09bd1d483154381588ebcdb4bf37cb87c0cc118af74bd0356769b7531bf551be"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 8,
+        "statement_sha256": "fde12b95cbacfe2bfc126f9076db539fcbe4ea98d4f338b5662584d2b79dcc3a"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 9,
+        "statement_sha256": "f43862ca75cfa145c590dd8d47404623b61eadadd8924af1ed3f9b21f17e41f5"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 10,
+        "statement_sha256": "b8946a24e53900dc66d4d3569b11695506c3c4e7b3003de8870f247f1ff4f813"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 11,
+        "statement_sha256": "27bbe6c0e11df2dbd6ae19cd3880db6bfb311c5678da47d883af0f0095772027"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 12,
+        "statement_sha256": "17d1ae76b02666537d4810861fb3d80c781c2caee8a0aaddc3d9c3a5db2dcd6f"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 13,
+        "statement_sha256": "9a72261ab00863d7406da56cbf25e323876f54c6c584e4eacc6d5cc54ed95202"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 14,
+        "statement_sha256": "4541fc52483bc9c5f42c7277a75417623dbc2e114797cc7eb813c0d54e9d2a0b"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 15,
+        "statement_sha256": "85abb6f45939ebb9196da353b587c79bfad1dc969342114af71f8f6d709db10e"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 16,
+        "statement_sha256": "bb1fc8ac5122acbd75b73ec437c0cfd3c6b3da884d38855d97df3f88e632f6c8"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 17,
+        "statement_sha256": "198dbe2daac46a83acdbb0a736e29980ae259e640cfcd1cd9149ad4ad85e3ec9"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 18,
+        "statement_sha256": "6c2b32fc79460ce1bb4076be82bcf58e3d3cd29941f3ab4eb3e1627dbf1e2f7e"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 19,
+        "statement_sha256": "fbd54262372f9eaa0928605f6dbacc7c0eb59654c0d1c472bb824d60c0fb00d3"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 20,
+        "statement_sha256": "095a42f49fe108b0b21dd40fa1c3800d9e9e9896f997fbdaad36d718322cd296"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 21,
+        "statement_sha256": "98cfe8d0a3089939e7a29f5572021f6df862d9c3cd343e5260c5d0b9337c691d"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 22,
+        "statement_sha256": "d674885a4185ef163493f6f96548a8b102fd6c310578d252003068bd1a59645e"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 23,
+        "statement_sha256": "91c7881a4e72376d871a6ea310293b303da787cc60398927163d5540911dabb3"
+      },
+      {
+        "file": "sql/10_ods.sql",
+        "statement_number": 24,
+        "statement_sha256": "7de2656d47096a6e7af201ab185e275f6d317823e2e08caa817586c46f7ebed1"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 1,
+        "statement_sha256": "2ca7f8c0909c6bb04130f138a7df277bacbe4b7a2de93e06767e21487900d31c"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 2,
+        "statement_sha256": "aaad87ed47602d0f53791145d37a74ba0e458ecc4ba53e03df99c7e095c00cbd"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 3,
+        "statement_sha256": "d51d3e3263d91a9511ef31d3b8c1a86d27437eafe52aed0563b4a0e1640cb2b3"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 4,
+        "statement_sha256": "1a7b5f2a55d534c7ef926f02a1d9a6ba6c601ee1ed620ed244d16948fcdd3a8a"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 5,
+        "statement_sha256": "66aeaa1366567f53bd04ee4538af38895b67d800c6a5eb7950dc7fd70c289de4"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 6,
+        "statement_sha256": "6b303bf76eda6b69fbf7362aaae4fd4b416a8dcd85c94fe36c9efc431cf73c09"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 7,
+        "statement_sha256": "56376da92f4239064cfb5f5bbef5255b552390bc3c00af392c50bf47ea99e860"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 8,
+        "statement_sha256": "b78a27bbc28385f49d8e2f02f17e61581288bc58ead8ad4a82e2e50fbc6ea462"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 9,
+        "statement_sha256": "054aa18927d3e4cda32a34b8f6bf2a9bf720d4bc86e1baee47375461bc614805"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 10,
+        "statement_sha256": "5641c09e95e3b00b2c68e7b858178d8841b3506d733722e4b395d5e986e46f39"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 11,
+        "statement_sha256": "b3bc21a41c1df30e96a998534de05694ee454a1f479ca5d09b3989c5dda66e28"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 12,
+        "statement_sha256": "acacdf7a39e1aa4d9288fafd47a95d59762cd64c796f0af18c57274cdc6b6553"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 13,
+        "statement_sha256": "5c33e88e5a962909a28f1c0d083c47376d463b93d93c7e8a09192d35ef2eb6e9"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 14,
+        "statement_sha256": "e5ea15d2d373765fb9ca5d7a0afb7875127b79504d20d09ef20eff9f927f2e92"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 15,
+        "statement_sha256": "0bffbe14c41b348495ea7cb0a0f476e53514963133ae91f6878056ae28759707"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 16,
+        "statement_sha256": "a6d0dbb8af6eb22a20afa2cd1b7657f1a1726f6d901d5bc26614d7677c021865"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 17,
+        "statement_sha256": "700238893278bc2d824a337a5a9871ab5172fbd38cbfb89742c5835a3247c195"
+      },
+      {
+        "file": "sql/20_dwd.sql",
+        "statement_number": 18,
+        "statement_sha256": "08d7134475302a2e7cb4465b9bcfb482cb82b15eb3184b4e78ae9a62f40145e1"
+      },
+      {
+        "file": "sql/30_dws_activity.sql",
+        "statement_number": 1,
+        "statement_sha256": "5d9d1bfc6e0ba91c10ee1ed6ec98e895b89ce0851012c1cc4f07321faadfc7e9"
+      },
+      {
+        "file": "sql/30_dws_activity.sql",
+        "statement_number": 2,
+        "statement_sha256": "a48a5931c025aaa19b34cded66eb734e1c4cab5c11da8416e888c6d4228caca6"
+      },
+      {
+        "file": "sql/30_dws_activity.sql",
+        "statement_number": 3,
+        "statement_sha256": "06ba292cb76efba9a7c587813cfb575a21863b36593ff9eec61780382654f04e"
+      },
+      {
+        "file": "sql/30_dws_activity.sql",
+        "statement_number": 4,
+        "statement_sha256": "86a6e20976acff8544c6d34522d0d29b2dff255c9109c0ab08a9fd76ea2f6539"
+      },
+      {
+        "file": "sql/30_dws_activity.sql",
+        "statement_number": 5,
+        "statement_sha256": "e1b3f2820772fd3007111498f8bc93664f59061900450fdd286bfb2595537d05"
+      },
+      {
+        "file": "sql/30_dws_activity.sql",
+        "statement_number": 6,
+        "statement_sha256": "668f3cf50ec4af6e27eba93c69341d5f76806cfd276846aaa50346dd917c51bc"
+      },
+      {
+        "file": "sql/31_dws_users.sql",
+        "statement_number": 1,
+        "statement_sha256": "b9d7da5bf9f8fe48fa3f6e49f5fbe2b6052902b3cc6a9adf423af3aba146ce44"
+      },
+      {
+        "file": "sql/31_dws_users.sql",
+        "statement_number": 2,
+        "statement_sha256": "c9d7bab8f3fdfc04a1c5da210d8602763a0c85cf6445ae4eecb6dbb9cbc95fa3"
+      },
+      {
+        "file": "sql/31_dws_users.sql",
+        "statement_number": 3,
+        "statement_sha256": "cec8f2c9ee952376c128237a1d49559413f2eded52d893fd2fec75cfcf88dcd5"
+      },
+      {
+        "file": "sql/31_dws_users.sql",
+        "statement_number": 4,
+        "statement_sha256": "ca65eab5f4efff3e230cb990d10716f26e1227e0b642e8251ce754ed077754bf"
+      },
+      {
+        "file": "sql/31_dws_users.sql",
+        "statement_number": 5,
+        "statement_sha256": "e1b798c6fdfb3b2d2100a5c09ee442eaab0f3545b8d1a17535f66e52a2f99b8c"
+      },
+      {
+        "file": "sql/31_dws_users.sql",
+        "statement_number": 6,
+        "statement_sha256": "923538af13b3862aacb71bd667a4d954eced5a16995aba9a1b08d7226665c5f4"
+      },
+      {
+        "file": "sql/32_dws_categories.sql",
+        "statement_number": 1,
+        "statement_sha256": "61357a9efca48cf2b3ff3c38b78562ddc8b1fcad09a1c6cbedba8e6e3759c622"
+      },
+      {
+        "file": "sql/32_dws_categories.sql",
+        "statement_number": 2,
+        "statement_sha256": "e710486a6fa852a47c4ab147933ecc2e05e91e78743ca17f0d040774aa386923"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 1,
+        "statement_sha256": "0dba5f7f62dd00349e1271d1f3d5d29f5fe40a4c6bd8525d8823ed8188345192"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 2,
+        "statement_sha256": "0d3de8f004f5d09eccc12f2bb49ad1d4c3c97d537f187d86cebeca2de6ca739e"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 3,
+        "statement_sha256": "934bf5f45694afd54e2ae7eec0c4e76f02db10f0e0411feddbd1fa2d940dbca1"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 4,
+        "statement_sha256": "4ba6c40490782713c51c2127736d7e6c1f1ee727d9d02a86de31be007c1fe6f8"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 5,
+        "statement_sha256": "468778adc550bc431a01afb092383de8ffa3e63f6b3a4560c84afdf726c97c21"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 6,
+        "statement_sha256": "24eaf270cd43673206c1a22592ec6622ad1a1affeb25bb662bbd239008396fc0"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 7,
+        "statement_sha256": "de3fbb968677e503312399c5de330dcc0c4daa1bad1357aebddf32d0bdf55583"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 8,
+        "statement_sha256": "a6f27c5848441fadab9159a20269a21228957ce2ea92ff539d30485aefaedaad"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 9,
+        "statement_sha256": "27747bb574f83f76b915a1440b33d4e47382f4b863e0e32f8da63f2e19538053"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 10,
+        "statement_sha256": "c9faa97796a3fd0256055c926e39d435a41ddea6ec704b95756df8cecac7aeb7"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 11,
+        "statement_sha256": "1b71b839270f35207e095670d22a45faad9282f90b5c615813e2fa594375c008"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 12,
+        "statement_sha256": "0c2ea35cf61c7a6038e8920b3e68015cb7ba5d191db3b2e45ebea956722f0994"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 13,
+        "statement_sha256": "7cc889d59fd3ca53a991750ec494cd392dd81e0ceacce70b351fd3b1e1a948de"
+      },
+      {
+        "file": "sql/40_ads.sql",
+        "statement_number": 14,
+        "statement_sha256": "32fcd52a9f5f511ca37141b64e579de4c4fd0e8958c49738a91873351161e8f9"
+      },
+      {
+        "file": "sql/90_quality.sql",
+        "statement_number": 1,
+        "statement_sha256": "78b6f992a7603e0579652f5e17bfce596b039ddd989289ff5c5698a7cb36731b"
+      },
+      {
+        "file": "sql/90_quality.sql",
+        "statement_number": 2,
+        "statement_sha256": "e78c4b28e4e3d6306d99ebc8e0e5b163a062223a57dfa8ed70df27546c1e0952"
+      },
+      {
+        "file": "sql/90_quality.sql",
+        "statement_number": 3,
+        "statement_sha256": "f876a52cd0da17d49f0c102e1d33c2141b6114a2257240521299effb5433da25"
+      },
+      {
+        "file": "sql/90_quality.sql",
+        "statement_number": 4,
+        "statement_sha256": "eab99cd9507dcc5454afda567ea83abb0ef6877a48eb096628d4aca6a372bef2"
+      }
+    ]
+  },
+  "spark_version": "4.0.3",
+  "raw": {
+    "external_tables": [
+      "raw_users_external",
+      "raw_products_external",
+      "raw_orders_external",
+      "raw_user_behaviors_external",
+      "raw_user_features_external",
+      "raw_product_features_external"
+    ],
+    "format": "CSV",
+    "header": true
+  },
+  "quality": {
+    "total_checks": 20,
+    "passed_checks": 16,
+    "failed_checks": 0,
+    "warning_checks": 4,
+    "blocking_checks": [],
+    "status": "pass"
+  },
+  "data_profile": {
+    "raw_rows": 59000,
+    "valid_rows": 58260,
+    "quarantine_rows": 740,
+    "dwd_rows": 58260,
+    "raw_table_rows": {
+      "users": 5000,
+      "products": 2000,
+      "orders": 15000,
+      "user_behaviors": 30000,
+      "user_features": 5000,
+      "product_features": 2000
+    },
+    "valid_table_rows": {
+      "users": 5000,
+      "products": 2000,
+      "orders": 14526,
+      "user_behaviors": 29734,
+      "user_features": 5000,
+      "product_features": 2000
+    },
+    "dwd_table_rows": {
+      "users": 5000,
+      "products": 2000,
+      "orders": 14526,
+      "user_behaviors": 29734,
+      "user_features": 5000,
+      "product_features": 2000
+    },
+    "min_event_date": "2025-09-06",
+    "max_event_date": "2026-03-05"
+  },
+  "exports": {
+    "ads_executive_kpis": 1,
+    "ads_daily_trend": 181,
+    "ads_sequential_funnel": 4,
+    "ads_category_performance": 15,
+    "ads_hourly_behavior": 24,
+    "ads_customer_segments": 5,
+    "ads_order_status": 7,
+    "ads_dataops_health": 20
+  },
+  "finished_at": "2026-07-12T06:16:08.012315+00:00",
+  "duration_seconds": 29.114
+}

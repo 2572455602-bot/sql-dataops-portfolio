@@ -1,0 +1,5 @@
+stage_order,stage_name,user_count,previous_stage_conversion,overall_conversion
+1,browse,4748,1.0,1.0
+2,click_after_browse,3013,0.6346,0.6346
+3,intent_after_click,1427,0.4736,0.3005
+4,paid_order_after_intent,504,0.3532,0.1061

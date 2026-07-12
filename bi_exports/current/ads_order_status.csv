@@ -1,0 +1,8 @@
+source_order_status,status_code,status_order,order_count,customer_count,order_amount,paid_gmv,order_share
+待付款,pending_payment,1,654,602,1997120.42,0.00,0.045
+已付款,paid,2,1451,1249,4519734.68,4519734.68,0.0999
+已发货,shipped,3,2153,1745,6867421.97,6867421.97,0.1482
+已收货,received,4,2886,2166,8880507.59,8880507.59,0.1987
+已完成,completed,5,5868,3461,17394827.97,17394827.97,0.404
+已取消,cancelled,6,1024,916,3208737.93,0.00,0.0705
+已退款,refunded,7,490,466,1689538.57,0.00,0.0337

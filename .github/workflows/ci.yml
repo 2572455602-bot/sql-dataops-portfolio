@@ -1,0 +1,34 @@
+name: dataops-ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  isolated-demo-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+          cache: pip
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Bootstrap Spark/Hive environment
+        run: make bootstrap
+      - name: Build deterministic demo in an isolated runtime
+        run: >-
+          .venv/bin/python -m ecommerce_dataops.cli demo
+          --users 40
+          --runtime-root "$RUNNER_TEMP/ecommerce-dataops-ci"
+      - name: Run tests
+        run: make test

@@ -1,0 +1,105 @@
+name: portfolio-pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-verify:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+          cache: pip
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Reject committed raw source tables
+        run: |
+          if git ls-files | grep -E '(^|/)(users|products|orders|user_behaviors|user_features|product_features)\.csv$'; then
+            echo "Raw six-table CSV files must never be committed." >&2
+            exit 1
+          fi
+
+      - name: Bootstrap Spark/Hive environment
+        run: make bootstrap
+
+      - name: Verify deterministic pipeline in an isolated runtime
+        run: >-
+          .venv/bin/python -m ecommerce_dataops.cli demo
+          --users 40
+          --runtime-root "$RUNNER_TEMP/ecommerce-dataops-pages-smoke"
+
+      - name: Run isolated test suite
+        run: make test
+
+      - name: Verify committed aggregate publication
+        run: |
+          test ! -L bi_exports/current
+          test -f bi_exports/current/manifest.json
+          test -f bi_exports/current/ads_executive_kpis.csv
+
+      - name: Build Pages from committed aggregate evidence
+        env:
+          LIVE_DASHBOARD_URL: ${{ vars.LIVE_DASHBOARD_URL }}
+        run: .venv/bin/python scripts/build_pages_site.py --output _site
+
+      - name: Stage static site for deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: recruiter-pages-site
+          path: _site
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    needs: build-and-verify
+    if: ${{ github.ref == 'refs/heads/main' }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download verified static site
+        uses: actions/download-artifact@v4
+        with:
+          name: recruiter-pages-site
+          path: _site
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

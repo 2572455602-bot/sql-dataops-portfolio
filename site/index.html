@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="SQL + Spark + DataOps portfolio with tested BI outputs."
+    />
+    <meta name="color-scheme" content="light" />
+    <title>E-commerce SQL + DataOps Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <a class="brand" href="#main" aria-label="返回项目首页">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span>DataOps Portfolio</span>
+      </a>
+      <span class="mode-badge">{{SOURCE_BADGE}}</span>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="project-title">
+        <div class="hero-copy">
+          <p class="eyebrow">SQL · SPARK · DATAOPS</p>
+          <h1 id="project-title">SQL DataOps<br /><span>Portfolio</span></h1>
+          <p class="lede">A reproducible warehouse pipeline with quality gates and BI-ready outputs.</p>
+
+          <div class="actions" aria-label="项目链接">
+            <a
+              class="button button-primary {{REPOSITORY_BUTTON_CLASS}}"
+              href="{{REPOSITORY_URL}}"
+            >{{REPOSITORY_BUTTON_LABEL}}</a>
+            <a
+              class="button button-secondary {{LIVE_BUTTON_CLASS}}"
+              href="{{LIVE_DASHBOARD_URL}}"
+            >{{LIVE_BUTTON_LABEL}}</a>
+          </div>
+        </div>
+
+        <dl class="metrics" aria-label="项目关键指标">
+          <div class="metric metric-featured">
+            <dt>有效订单</dt>
+            <dd>{{TOTAL_ORDERS}}</dd>
+          </div>
+          <div class="metric">
+            <dt>完成订单样本金额</dt>
+            <dd>{{SAMPLE_AMOUNT}}</dd>
+          </div>
+          <div class="metric">
+            <dt>完成购买用户</dt>
+            <dd>{{CUSTOMERS}}</dd>
+          </div>
+          <div class="metric">
+            <dt>订单完成率</dt>
+            <dd>{{COMPLETION_RATE}}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="flow" aria-label="数据处理流程">
+        <div class="source">
+          <strong>Source</strong>
+          <span>CSV inputs</span>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div><strong>Warehouse</strong><span>RAW · ODS · DWD · DWS · ADS</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div><strong>Quality</strong><span>gated release</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div><strong>BI</strong><span>published extracts</span></div>
+      </section>
+
+      <p class="data-notice"><span aria-hidden="true">●</span> {{DATA_NOTICE}}</p>
+    </main>
+  </body>
+</html>

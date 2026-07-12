@@ -1,0 +1,21 @@
+check_name,check_status,observed_value,expected_value,severity,details,checked_at
+ads_outputs_non_empty,pass,7,7,critical,All public aggregate tables must contain rows.,2026-07-12 14:16:00.711396
+all_source_tables_non_empty,pass,"5000,2000,15000,30000,5000,2000",all six tables > 0,critical,Every contracted source table must contain data.,2026-07-12 14:16:00.711396
+amount_equation_valid,pass,0,0,critical,actual_payment must equal total_amount minus discount.,2026-07-12 14:16:00.711396
+customer_segments_reconcile,pass,"users=5000,share=1.0",segments cover all users exactly once,critical,Customer segments must be mutually exclusive and exhaustive.,2026-07-12 14:16:00.711396
+daily_orders_reconcile,pass,"orders=14526,completed=17394827.97",daily totals = DWD totals,critical,Daily commerce totals must reconcile to the order fact.,2026-07-12 14:16:00.711396
+executive_kpis_reconcile,pass,"orders=14526,behaviors=29734,quarantine=740",ADS equals independent DWD recomputation,critical,Published headline KPIs must reconcile to cleaned facts.,2026-07-12 14:16:00.711396
+feature_last_order_sentinel_reported,warn,5000,reported only,warning,days_since_last_order sentinel values are not used in business metrics.,2026-07-12 14:16:00.711396
+foreign_keys_complete,pass,0,0,critical,Published order and behavior facts require valid user and product parents.,2026-07-12 14:16:00.711396
+non_temporal_quarantine_empty,pass,0,0,critical,Only pure pre-registration temporal anomalies may be quarantined without blocking publication.,2026-07-12 14:16:00.711396
+ods_dwd_behavior_reconciliation,pass,29734=29734,ods_behaviors=dwd_behaviors,critical,DWD must retain every valid behavior.,2026-07-12 14:16:00.711396
+ods_dwd_order_reconciliation,pass,14526=14526,ods_orders=dwd_orders,critical,DWD must retain every valid order.,2026-07-12 14:16:00.711396
+order_lifecycle_dates_valid,pass,0,0,critical,Shipping and receipt timestamps must match lifecycle state and sequence.,2026-07-12 14:16:00.711396
+pre_registration_events_reported,warn,740,reported and excluded,warning,Orders or behaviors before registration are quarantined as temporal anomalies.,2026-07-12 14:16:00.711396
+primary_keys_unique,pass,0,0,critical,All six business keys must be unique.,2026-07-12 14:16:00.711396
+product_feature_snapshot_reconciles,pass,0,0,critical,Audit-only product feature counts must match independent source fact aggregation.,2026-07-12 14:16:00.711396
+quarantined_source_rows_reported,warn,740,reported and excluded,warning,Invalid source rows are isolated and excluded from business aggregates.,2026-07-12 14:16:00.711396
+raw_ods_row_reconciliation,pass,quarantine=740,raw=valid+quarantine for all tables,critical,Every source row must land in exactly one ODS outcome.,2026-07-12 14:16:00.711396
+sequential_funnel_monotonic,pass,"stages=4,violations=0","stages=4,violations=0",critical,User-level sequential stage counts may never increase.,2026-07-12 14:16:00.711396
+unit_price_total_difference_reported,warn,14996,reported only,warning,unit_price × quantity is not treated as authoritative because the source total_amount uses an undocumented adjustment.,2026-07-12 14:16:00.711396
+user_feature_snapshot_reconciles,pass,0,0,critical,Audit-only user feature counts must match independent source fact aggregation.,2026-07-12 14:16:00.711396

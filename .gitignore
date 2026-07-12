@@ -1,0 +1,41 @@
+.DS_Store
+.env
+.env.*
+.venv/
+.tools/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest-tmp*/
+.coverage
+htmlcov/
+dist/
+_site/
+
+# Source data is downloaded separately and never committed.
+data/raw/*
+!data/raw/README.md
+data/demo/
+UserBehavior.csv
+dataset/
+orders.csv
+product_features.csv
+products.csv
+user_behaviors.csv
+user_features.csv
+users.csv
+
+# Per-run Spark/Hive state and candidate publications.
+artifacts/
+spark-warehouse/
+metastore_db/
+derby.log
+bi_exports/.candidate-*/
+bi_exports/.previous-*/
+bi_exports/.current-link-*
+bi_exports/releases/
+
+# Local logs and UI state.
+logs/
+.streamlit/
+*.log
