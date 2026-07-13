@@ -6,6 +6,7 @@
 这是一个面向数据开发、数仓、BI 与 DataOps 岗位的可复现作品项目。它把用户、商品、订单、行为和两张特征快照表加工为五层 SparkSQL 数仓，并用质量门禁保护最后一个可用的 Dashboard 发布版本。
 
 GitHub Pages 首页刻意只保留标题、4 个 KPI、流程与入口；本 README 承担技术说明和复现证据。
+企业级运行视角见 [`docs/enterprise_dataops_playbook_zh.md`](docs/enterprise_dataops_playbook_zh.md)。
 
 ## 30 秒看懂
 

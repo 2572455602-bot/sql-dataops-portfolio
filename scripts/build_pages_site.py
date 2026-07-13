@@ -20,6 +20,9 @@ if str(ROOT) not in sys.path:
 TEMPLATE_DIR = ROOT / "site"
 DEFAULT_EXPORT_DIR = ROOT / "bi_exports" / "current"
 DEFAULT_OUTPUT = ROOT / "dist" / "pages"
+DEFAULT_LIVE_DASHBOARD_URL = (
+    "https://sql-dataops-portfolio-bzzv3wfoclo7er2a2aqudj.streamlit.app/"
+)
 
 
 def _read_json(path: Path) -> dict[str, object]:
@@ -185,7 +188,7 @@ def build_pages_site(
     mode = str(manifest["data_mode"]).upper()
     repo_url = _repository_url(repository_url)
     live_url = _validated_https_url(
-        live_dashboard_url or os.getenv("LIVE_DASHBOARD_URL"),
+        live_dashboard_url or os.getenv("LIVE_DASHBOARD_URL") or DEFAULT_LIVE_DASHBOARD_URL,
         label="Live dashboard URL",
     )
     data_notice = (
